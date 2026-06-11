@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Environment Variables
+.env
+client/.env
+server/.env
+
+# Production Builds
+dist/
+client/dist/
+build/
+
+# Logs
+*.log
+client-dev.err.log
+client-dev.out.log
+dev-server.err.log
+dev-server.log
+dev-server.out.log
+server-dev.err.log
+server-dev.out.log
+
+# OS Metadata
+.DS_Store
+Thumbs.db
+
+# Large Archives/Zip files
+*.zip
+altheria-fts-share-current-working.zip

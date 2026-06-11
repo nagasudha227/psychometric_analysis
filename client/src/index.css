@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #0a0d14;
+  color: #e2e8f0;
+  font-family: 'Trebuchet MS', Arial, sans-serif;
+  min-height: 100vh;
+}
+
+@layer components {
+  .fts-input {
+    @apply w-full bg-[#0d1e30] border border-[#1e3a5f] text-slate-200 px-4 py-3 rounded 
+           placeholder-slate-500 focus:outline-none focus:border-[#00d4d4] focus:ring-1 
+           focus:ring-[#00d4d4] transition-colors text-sm;
+  }
+
+  .fts-btn-primary {
+    @apply w-full bg-[#00d4d4] hover:bg-[#00b8b8] active:bg-[#009999] 
+           text-[#0a0d14] font-bold py-3 px-6 rounded tracking-widest 
+           text-sm uppercase transition-colors cursor-pointer border-0;
+  }
+
+  .fts-btn-secondary {
+    @apply w-full bg-[#1a3a5c] hover:bg-[#1e4470] active:bg-[#162f4d]
+           text-slate-200 font-bold py-3 px-6 rounded tracking-widest
+           text-sm uppercase transition-colors cursor-pointer border border-[#2a5080];
+  }
+
+  .fts-card {
+    @apply bg-[#0f1824] border border-[#1a3a5c] rounded-lg;
+  }
+
+  .fts-label {
+    @apply text-[#7a9bbf] text-xs font-bold tracking-widest uppercase mb-1.5 block;
+  }
+}
