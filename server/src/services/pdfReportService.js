@@ -4,7 +4,9 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const REPORTS_DIR = path.resolve(__dirname, '../../../uploads/reports')
+const REPORTS_DIR = process.env.VERCEL
+  ? '/tmp/uploads/reports'
+  : path.resolve(__dirname, '../../../uploads/reports')
 fs.mkdirSync(REPORTS_DIR, { recursive: true })
 
 const TEAL = '#00d4d4'

@@ -69,7 +69,7 @@ export function startServer(port = PORT) {
   })
 }
 
-if (process.env.ALTHERIA_NO_AUTO_START !== '1') {
+if (process.env.ALTHERIA_NO_AUTO_START !== '1' && !process.env.VERCEL) {
   startServer()
 }
 

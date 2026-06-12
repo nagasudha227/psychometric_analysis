@@ -8,7 +8,9 @@ import { generateReport } from '../services/pdfReportService.js'
 import { v4 as uuidv4 } from 'uuid'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const REPORTS_DIR = path.resolve(__dirname, '../../../uploads/reports')
+const REPORTS_DIR = process.env.VERCEL
+  ? '/tmp/uploads/reports'
+  : path.resolve(__dirname, '../../../uploads/reports')
 
 const router = Router()
 router.use(requireAuth)
@@ -90,7 +92,9 @@ router.get('/:id/download', (req, res) => {
   const report = reports.get(req.params.id)
   if (!report) return res.status(404).json({ error: 'Report not found.' })
 
-  const filePath = report.filePath || path.join(REPORTS_DIR, report.filename)
+  const filePath = process.env.VERCEL
+    ? path.join('/tmp/uploads/reports', report.filename)
+    : (report.filePath || path.join(REPORTS_DIR, report.filename))
   if (!fs.existsSync(filePath)) {
     return res.status(410).json({ error: 'Report file no longer available on disk.' })
   }

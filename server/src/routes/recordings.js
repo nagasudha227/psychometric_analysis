@@ -9,7 +9,9 @@ import { requireAuth } from '../middleware/auth.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const PROJECT_ROOT = path.resolve(__dirname, '../../..')
-const UPLOADS_DIR = path.join(PROJECT_ROOT, 'uploads', 'recordings')
+const UPLOADS_DIR = process.env.VERCEL
+  ? '/tmp/uploads/recordings'
+  : path.join(PROJECT_ROOT, 'uploads', 'recordings')
 const MAX_FILE_SIZE = 2 * 1024 * 1024 * 1024
 const ALLOWED_MIME = new Set([
   'video/webm',
@@ -152,6 +154,9 @@ router.delete('/:id', (req, res) => {
 })
 
 function recordingPath(rec) {
+  if (process.env.VERCEL) {
+    return path.join('/tmp/uploads/recordings', rec.filename)
+  }
   if (rec.storagePath) return path.join(PROJECT_ROOT, rec.storagePath)
   return path.join(UPLOADS_DIR, rec.filename)
 }
